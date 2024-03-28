@@ -1,25 +1,29 @@
-# Protokit starter-kit
+# Mina Navigators Learn2Earn-3
 
-This repository is a monorepo aimed at kickstarting application chain development using the Protokit framework.
+## Security issues
+
+There are 2 main security issues
+
+1. securityCode is public. Despite only the hash being stored on protokit, after the first message, anyone can send messages as this agent. The solution would be to either check the publicKey of the agent or hash the securityCode with a nonce, so the value transmitted would be different for every message.
+2. Message is public, so anyone can see it. In the case we want private messages, we should only store the commitment of the message, and the message itself should be stored off-chain.
 
 ## Quick start
 
 The monorepo contains 1 package and 1 app:
 
-- `packages/chain` contains everything related to your app-chain
-- `apps/web` contains a demo UI that connects to your locally hosted app-chain sequencer
+-   `packages/chain` contains everything related to your app-chain
+-   `apps/web` contains a demo UI that connects to your locally hosted app-chain sequencer
 
 **Prerequisites:**
 
-- Node.js v18
-- pnpm
-- nvm
+-   Node.js v18
+-   pnpm
+-   nvm
 
-> If you're on windows, please use Docker until we find a more suitable solution to running the `@proto-kit/cli`. 
+> If you're on windows, please use Docker until we find a more suitable solution to running the `@proto-kit/cli`.
 > Run the following command and then proceed to "Running the sequencer & UI":
 >
 > `docker run -it --rm -p 3000:3000 -p 8080:8080 -v %cd%:/starter-kit -w /starter-kit gplane/pnpm:node18 bash`
-
 
 ### Setup
 
@@ -45,6 +49,7 @@ pnpm dev -- --filter chain
 ```
 
 ### Running tests
+
 ```zsh
 # run and watch tests for the `chain` package
 pnpm run test --filter=chain -- --watchAll
