@@ -15,6 +15,12 @@ import {
     Struct,
 } from 'o1js';
 
+function getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
+}
+
+const stringValues = '01234567890abcdefghijklmnopqrstuvwxyz';
+
 export class SpyMessage extends Struct({
     agentId: Field,
     value: Provable.Array(Character, 12),
@@ -22,6 +28,19 @@ export class SpyMessage extends Struct({
 }) {
     getSecurityCodeHash(): Field {
         return Poseidon.hash(this.securityCode.map((char) => char.toField()));
+    }
+
+    static random(agentId: Field, securityCode: Character[]): SpyMessage {
+        return new SpyMessage({
+            agentId,
+            value: [...Array(12)].map((index) => {
+                let val = stringValues[getRandomInt(stringValues.length)];
+                return Character.fromString(
+                    stringValues[getRandomInt(stringValues.length)]
+                );
+            }),
+            securityCode: securityCode,
+        });
     }
 }
 
@@ -31,8 +50,10 @@ export class SpyStatus extends Struct({
     securityCodeHash: Field,
 }) {}
 
+interface SpyManagerConfig {}
+
 @runtimeModule()
-export class SpyManager extends RuntimeModule<void> {
+export class SpyManager extends RuntimeModule<SpyManagerConfig> {
     @state() public spyStatuses = StateMap.from<Field, SpyStatus>(
         Field,
         SpyStatus

@@ -1,21 +1,11 @@
-import { UInt64 } from "o1js";
-import { Balances } from "./balances";
-import { runtimeModule } from "@proto-kit/module";
-
-@runtimeModule()
-export class CustomBalances extends Balances {}
+import { UInt64 } from 'o1js';
+import { SpyManager } from './SpyManager';
 
 export default {
-  modules: {
-    Balances,
-    CustomBalances,
-  },
-  config: {
-    Balances: {
-      totalSupply: UInt64.from(10_000),
+    modules: {
+        SpyManager,
     },
-    CustomBalances: {
-      totalSupply: UInt64.from(10_000),
+    config: {
+        SpyManager: {},
     },
-  },
 };
