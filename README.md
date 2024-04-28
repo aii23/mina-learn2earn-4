@@ -1,24 +1,17 @@
-# Mina Navigators Learn2Earn-3
-
-## Security issues
-
-There are 2 main security issues
-
-1. securityCode is public. Despite only the hash being stored on protokit, after the first message, anyone can send messages as this agent. The solution would be to either check the publicKey of the agent or hash the securityCode with a nonce, so the value transmitted would be different for every message.
-2. Message is public, so anyone can see it. In the case we want private messages, we should only store the commitment of the message, and the message itself should be stored off-chain.
+# Mina Navigators Learn2Earn-4
 
 ## Quick start
 
 The monorepo contains 1 package and 1 app:
 
--   `packages/chain` contains everything related to your app-chain
--   `apps/web` contains a demo UI that connects to your locally hosted app-chain sequencer
+- `packages/chain` contains everything related to your app-chain
+- `apps/web` contains a demo UI that connects to your locally hosted app-chain sequencer
 
 **Prerequisites:**
 
--   Node.js v18
--   pnpm
--   nvm
+- Node.js v18
+- pnpm
+- nvm
 
 > If you're on windows, please use Docker until we find a more suitable solution to running the `@proto-kit/cli`.
 > Run the following command and then proceed to "Running the sequencer & UI":
