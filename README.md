@@ -1,5 +1,9 @@
 # Mina Navigators Learn2Earn-4
 
+Made the message private. Message validation is done via ZK proof.
+Agent id is not private, as we need to store information for each agent that can be later accessed. But it can be made fully private with Merkle Map, but the query would not work.
+Message message id is not private, as long as the last message id is public and updated with every message, so it would be public anyway.
+
 ## Quick start
 
 The monorepo contains 1 package and 1 app:
